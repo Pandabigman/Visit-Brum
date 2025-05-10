@@ -1,10 +1,11 @@
 const places = [
     {
+      id:"1",
       name: "Winterbourne House & Garden",
-      profilePic: "/images/winterbourne/main.jpg",
+      profilePic: "../images/winterbourne/main.jpeg",
       extraPics: [
-        "/images/winterbourne/1.jpg",
-        "/images/winterbourne/2.jpg",
+        "../images/winterbourne/1.jpeg",
+        "../images/winterbourne/2.jpeg",
       ],
       rating: 4.8,
       location: "58 Edgbaston Park Rd, Birmingham B15 2RT",
@@ -18,11 +19,12 @@ const places = [
       ]
     },
     {
+      id:"2",
       name: "Moseley Bog",
-      profilePic: "/images/moseleybog/main.jpg",
+      profilePic: "../images/moseleybog/main.jpeg",
       extraPics: [
-        "/images/moseleybog/1.jpg",
-        "/images/moseleybog/2.jpg"
+        "../images/moseleybog/1.jpeg",
+        "../images/moseleybog/2.jpeg"
       ],
       rating: 4.7,
       location: "Yardley Wood Rd, Birmingham B13 9JX",
@@ -36,11 +38,12 @@ const places = [
       ]
     },
     {
+      id:"3",
       name: "The Coffin Works",
-      profilePic: "/images/coffinworks/main.jpg",
+      profilePic: "../images/coffinworks/main.jpeg",
       extraPics: [
-        "/images/coffinworks/1.jpg",
-        "/images/coffinworks/2.jpg"
+        "../images/coffinworks/1.jpeg",
+        "../images/coffinworks/2.jpeg"
       ],
       rating: 4.6,
       location: "13-15 Fleet St, Birmingham B3 1JP",
@@ -54,11 +57,12 @@ const places = [
       ]
     },
     {
+      id:"4",
       name: "Sarehole Mill",
-      profilePic: "/images/sarehole/main.jpg",
+      profilePic: "../images/sarehole/main.jpeg",
       extraPics: [
-        "/images/sarehole/1.jpg",
-        "/images/sarehole/2.jpg"
+        "../images/sarehole/1.jpeg",
+        "../images/sarehole/2.jpeg"
       ],
       rating: 4.5,
       location: "Cole Bank Rd, Birmingham B13 0BD",
@@ -72,11 +76,12 @@ const places = [
       ]
     },
     {
+      id:"5",
       name: "Tiger Bites Pig",
-      profilePic: "/images/tigerbites/main.jpg",
+      profilePic: "../images/tigerbites/main.jpeg",
       extraPics: [
-        "/images/tigerbites/1.jpg",
-        "/images/tigerbites/2.jpg"
+        "../images/tigerbites/1.jpeg",
+        "../images/tigerbites/2.jpeg"
       ],
       rating: 4.9,
       location: "34 Stephenson St, Birmingham B2 4BH",
@@ -90,11 +95,12 @@ const places = [
       ]
     },
     {
+      id:"6",
       name: "The Juke",
-      profilePic: "/images/thejuke/main.jpg",
+      profilePic: "../images/thejuke/main.jpeg",
       extraPics: [
-        "/images/thejuke/1.jpg",
-        "/images/thejuke/2.jpg"
+        "../images/thejuke/1.jpeg",
+        "../images/thejuke/2.jpeg"
       ],
       rating: 4.8,
       location: "16 York Rd, Birmingham B14 7RZ",
@@ -108,11 +114,12 @@ const places = [
       ]
     },
     {
+      id:"7",
       name: "Tilt",
-      profilePic: "/images/tilt/main.jpg",
+      profilePic: "../images/tilt/main.jpeg",
       extraPics: [
-        "/images/tilt/1.jpg",
-        "/images/tilt/2.jpg"
+        "../images/tilt/1.jpeg",
+        "../images/tilt/2.jpeg"
       ],
       rating: 4.7,
       location: "2 City Arcade, Birmingham B2 4TX",
@@ -126,11 +133,12 @@ const places = [
       ]
     },
     {
+      id:"8",
       name: "The Electric Cinema",
-      profilePic: "/images/electric/main.jpg",
+      profilePic: "../images/electric/main.jpeg",
       extraPics: [
-        "/images/electric/1.jpg",
-        "/images/electric/2.jpg"
+        "../images/electric/1.jpeg",
+        "../images/electric/2.jpeg"
       ],
       rating: 4.6,
       location: "47-49 Station St, Birmingham B5 4DY",
@@ -144,11 +152,12 @@ const places = [
       ]
     },
     {
+        id:"9",
         name: "Digbeth Graffiti Walk",
-        profilePic: "/images/digbeth/main.jpg",
+        profilePic: "../images/digbeth/main.jpeg",
         extraPics: [
-          "/images/digbeth/1.jpg",
-          "/images/digbeth/2.jpg"
+          "../images/digbeth/1.jpeg",
+          "../images/digbeth/2.jpeg"
         ],
         rating: 4.9,
         location: "Digbeth, Birmingham B9",
@@ -162,11 +171,12 @@ const places = [
         ]
       },
       {
+        id:"10",
         name: "Cherry Reds",
-        profilePic: "/images/cherryreds/main.jpg",
+        profilePic: "../images/cherryreds/main.jpeg",
         extraPics: [
-          "/images/cherryreds/1.jpg",
-          "/images/cherryreds/2.jpg"
+          "../images/cherryreds/1.jpeg",
+          "../images/cherryreds/2.jpeg"
         ],
         rating: 4.5,
         location: "88–92 John Bright St, Birmingham B1 1BN",
@@ -180,11 +190,12 @@ const places = [
         ]
       },
       {
+        id:"11",
         name: "The Mockingbird Cinema & Kitchen",
-        profilePic: "/images/mockingbird/main.jpg",
+        profilePic: "../images/mockingbird/main.jpeg",
         extraPics: [
-          "/images/mockingbird/1.jpg",
-          "/images/mockingbird/2.jpg"
+          "../images/mockingbird/1.jpeg",
+          "../images/mockingbird/2.jpeg"
         ],
         rating: 4.6,
         location: "Custard Factory, Gibb St, Birmingham B9 4AA",
@@ -198,11 +209,12 @@ const places = [
         ]
       },
       {
+        id:"12",
         name: "Cannon Hill Park Boating Lake",
-        profilePic: "/images/cannonhill/main.jpg",
+        profilePic: "../images/cannonhill/main.jpeg",
         extraPics: [
-          "/images/cannonhill/1.jpg",
-          "/images/cannonhill/2.jpg"
+          "../images/cannonhill/1.jpeg",
+          "../images/cannonhill/2.jpeg"
         ],
         rating: 4.4,
         location: "Russell Rd, Birmingham B13 8RD",
@@ -216,11 +228,12 @@ const places = [
         ]
       },
       {
+        id:"13",
         name: "Ikon Gallery",
-        profilePic: "/images/ikon/main.jpg",
+        profilePic: "../images/ikon/main.jpeg",
         extraPics: [
-          "/images/ikon/1.jpg",
-          "/images/ikon/2.jpg"
+          "../images/ikon/1.jpeg",
+          "../images/ikon/2.jpeg"
         ],
         rating: 4.3,
         location: "1 Oozells Square, Brindleyplace, Birmingham B1 2HS",
@@ -234,11 +247,12 @@ const places = [
         ]
       },
       {
+        id:"14",
         name: "Martineau Gardens",
-        profilePic: "/images/martineau/main.jpg",
+        profilePic: "../images/martineau/main.jpeg",
         extraPics: [
-          "/images/martineau/1.jpg",
-          "/images/martineau/2.jpg"
+          "../images/martineau/1.jpeg",
+          "../images/martineau/2.jpeg"
         ],
         rating: 4.6,
         location: "27 Priory Rd, Birmingham B5 7UG",
@@ -252,11 +266,12 @@ const places = [
         ]
       },
       {
+        id:"15",
         name: "Roundhouse Birmingham",
-        profilePic: "/images/roundhouse/main.jpg",
+        profilePic: "../images/roundhouse/main.jpeg",
         extraPics: [
-          "/images/roundhouse/1.jpg",
-          "/images/roundhouse/2.jpg"
+          "../images/roundhouse/1.jpeg",
+          "../images/roundhouse/2.jpeg"
         ],
         rating: 4.5,
         location: "Roundhouse Rd, Sheepcote St, Birmingham B16 8AE",
@@ -270,11 +285,12 @@ const places = [
         ]
       },
       {
+        id:"16",
         name: "Lapworth Museum of Geology",
-        profilePic: "/images/lapworth/main.jpg",
+        profilePic: "../images/lapworth/main.jpeg",
         extraPics: [
-          "/images/lapworth/1.jpg",
-          "/images/lapworth/2.jpg"
+          "../images/lapworth/1.jpeg",
+          "../images/lapworth/2.jpeg"
         ],
         rating: 4.7,
         location: "University of Birmingham, Edgbaston B15 2TT",

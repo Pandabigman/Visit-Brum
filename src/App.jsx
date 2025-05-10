@@ -1,6 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Home from './pages/Home';
+import Gems from './pages/Gems';
+import Explore from './pages/Explore';
 import Navbar from './components/Navbar';
 
 function App() {
@@ -8,9 +11,9 @@ function App() {
     <Router>
       <Navbar appName="Brum Explorer" />
       <Routes>
-        <Route path="/" element={<div>Home Page</div>} />
-        <Route path="/gems" element={<div>Gems Page</div>} />
-        <Route path="/gems/discover" element={<div>Discover Page</div>} />
+        <Route path="/" element={<Home/>} />
+        <Route path="/gems" element={<Gems/>} />
+        <Route path="/gems/explore" element={<Explore/>} />
       </Routes>
     </Router>
   );

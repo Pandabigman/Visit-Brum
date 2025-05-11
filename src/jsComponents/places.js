@@ -2,10 +2,10 @@ const places = [
     {
       id:"1",
       name: "Winterbourne House & Garden",
-      profilePic: "../images/winterbourne/main.jpeg",
+      profilePic: "/images/winterbourne/main.jpeg",
       extraPics: [
-        "../images/winterbourne/1.jpeg",
-        "../images/winterbourne/2.jpeg",
+        "/images/winterbourne/1.jpeg",
+        "/images/winterbourne/2.jpeg",
       ],
       rating: 4.8,
       location: "58 Edgbaston Park Rd, Birmingham B15 2RT",

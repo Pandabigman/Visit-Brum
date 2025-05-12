@@ -413,9 +413,9 @@ const Dashboard = () => {
                 </button>
                 <button 
                   className="btn btn-outline-primary"
-                  onClick={() => navigate('/shop')}
+                  onClick={() => navigate('/gems/submit')}
                 >
-                  Shop
+                  Submit New Gem
                 </button>
                 <button 
                     className="btn btn-danger"

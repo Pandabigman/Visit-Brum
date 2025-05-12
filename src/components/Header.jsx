@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faGem, faHeart, faShop, faPen, faSun, faMoon, faCity, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faGem, faMedal, faShop, faPen, faSun, faMoon, faCity, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { motion } from 'framer-motion';
 
 const Header = () => {
@@ -82,7 +82,7 @@ const Header = () => {
     { path: '/gems', icon: faGem, label: 'Gems' },
     { path: '/plan', icon: faPen, label: 'Planner' },
     { path: '/Shop', icon: faShop, label: 'Shop' },
-    { path: '/gems/submit', icon: faPlus, label: 'Submit' },
+    { path: '/gems/leaderboard', icon: faMedal, label: 'Leaderboard' },
   ];
 
   return (

@@ -12,6 +12,7 @@ import Dashboard from './pages/Dashboard';
 import Header from './components/Header';
 import Shop from './pages/Shop';
 import Plan from './pages/Plan';
+import Leaderboard from './pages/Leaderboard';
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
           <Route path="/profile" element={<Dashboard />} />
           <Route path="/plan" element={<Plan />} />
           <Route path="/shop" element={<Shop />} />
+          <Route path="/gems/leaderboard" element={<Leaderboard />} />
         </Routes>
       </>
     );

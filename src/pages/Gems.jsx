@@ -3,37 +3,82 @@ import { useNavigate } from 'react-router-dom';
 import places from '../jsComponents/places';
 import Slider from 'react-slick';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGem, faLocationDot, faHeart, faShuffle } from '@fortawesome/free-solid-svg-icons';
+import { faGem, faLocationDot, faHeart, faShuffle, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { motion, AnimatePresence } from 'framer-motion';
-
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const Gems = () => {
   const navigate = useNavigate();
-  const [selectedItem, setSelectedItem] = useState(places[0]);
+  const [allPlaces, setAllPlaces] = useState([]);
+  const [selectedItem, setSelectedItem] = useState(null);
   const [isFavorite, setIsFavorite] = useState(false);
+  const [favorites, setFavorites] = useState([]);
   const sliderRef = useRef(null);
   
+  // Load both predefined places and user submissions
   useEffect(() => {
-    // Ensure we always have a selected item
-    if (!selectedItem && places.length > 0) {
-      setSelectedItem(places[0]);
+    // Retrieve user submitted gems from localStorage
+    const userGems = JSON.parse(localStorage.getItem('userSubmittedGems') || '[]');
+    
+    // Combine with predefined places
+    const combinedPlaces = [...places, ...userGems];
+    
+    setAllPlaces(combinedPlaces);
+    
+    // Set initial selected item
+    if (combinedPlaces.length > 0) {
+      setSelectedItem(combinedPlaces[0]);
     }
+    
+    // Load favorites
+    const savedFavorites = JSON.parse(localStorage.getItem('favoriteGems') || '[]');
+    setFavorites(savedFavorites);
   }, []);
 
+  // Check if current item is in favorites
+  useEffect(() => {
+    if (selectedItem) {
+      const isFav = favorites.some(fav => fav.id === selectedItem.id);
+      setIsFavorite(isFav);
+    }
+  }, [selectedItem, favorites]);
+
   const handleDetailsClick = () => {
-    if (selectedItem) navigate(`/explore/${selectedItem.id}`);
+    if (selectedItem) navigate(`/gems/explore/${selectedItem.id}`);
+  };
+
+  const handleSubmitNewClick = () => {
+    navigate('/submit-gem');
   };
 
   const toggleFavorite = () => {
+    if (!selectedItem) return;
+    
+    let updatedFavorites;
+    
+    if (isFavorite) {
+      // Remove from favorites
+      updatedFavorites = favorites.filter(fav => fav.id !== selectedItem.id);
+    } else {
+      // Add to favorites
+      updatedFavorites = [...favorites, selectedItem];
+    }
+    
+    // Update state and localStorage
+    setFavorites(updatedFavorites);
+    localStorage.setItem('favoriteGems', JSON.stringify(updatedFavorites));
     setIsFavorite(!isFavorite);
   };
 
   const handleRandomSelect = () => {
-    const randomIndex = Math.floor(Math.random() * places.length);
+    if (allPlaces.length === 0) return;
+    
+    const randomIndex = Math.floor(Math.random() * allPlaces.length);
     if (sliderRef.current) {
       sliderRef.current.slickGoTo(randomIndex);
       // Directly update the selected item without waiting for afterChange
-      setSelectedItem(places[randomIndex]);
+      setSelectedItem(allPlaces[randomIndex]);
     }
   };
 
@@ -75,7 +120,7 @@ const Gems = () => {
     prevArrow: <CustomPrevArrow />,
     beforeChange: (current, next) => {
       // Update the selected item as soon as the change starts
-      setSelectedItem(places[next]);
+      setSelectedItem(allPlaces[next]);
     }
   };
 
@@ -103,8 +148,17 @@ const Gems = () => {
     tap: { scale: 0.95 }
   };
 
-  // For debugging
-  console.log("Current selected item:", selectedItem);
+  // Display a loading state while places are being fetched
+  if (allPlaces.length === 0) {
+    return (
+      <div className="container mt-5 text-center">
+        <div className="spinner-border text-primary" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+        <p className="mt-2">Loading hidden gems...</p>
+      </div>
+    );
+  }
 
   return (
     <motion.div
@@ -117,7 +171,7 @@ const Gems = () => {
         variants={itemVariants}
         className="mb-4 position-relative d-inline-block"
       >
-        <h2 className="display-5 fw-bold">
+        <h3 className="display-5 fw-bold">
           <FontAwesomeIcon
             icon={faGem}
             className="me-2"
@@ -126,31 +180,32 @@ const Gems = () => {
               animation: 'spin-horizontal 4s linear infinite'
             }}
           />
-          Birmingham's Hidden Gems
-        </h2>
-        <style>
-          {`
-            @keyframes spin-horizontal {
-              0% { transform: rotateY(0deg); }
-              100% { transform: rotateY(360deg); }
-            }
-          `}
-        </style>
+          DISCOVER A HIDDEN GEM
+        </h3>
+        
       </motion.div>
 
       <motion.div variants={itemVariants}>
         <div className="container d-flex align-items-center justify-content-center mt-4">
           <div className="position-relative w-100" style={{ maxWidth: '700px' }}>
             <Slider ref={sliderRef} {...settings}>
-              {places.map((item, index) => (
+              {allPlaces.map((item, index) => (
                 <div key={index} onClick={() => setSelectedItem(item)}>
-                  <div className="border rounded shadow-sm overflow-hidden bg-white">
+                  <div className="border rounded shadow-sm overflow-hidden bg-white position-relative">
                     <img
                       src={item.profilePic}
                       alt={item.name}
                       className="img-fluid w-100"
                       style={{ height: '500px', width: '600px', objectFit: 'cover' }}
                     />
+                    {item.userSubmitted && (
+                      <div 
+                        className="position-absolute top-0 end-0 bg-success text-white px-2 py-1 m-2 rounded-pill"
+                        style={{ fontSize: '0.8rem' }}
+                      >
+                        User Submitted
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}
@@ -159,22 +214,24 @@ const Gems = () => {
         </div>
       </motion.div>
 
-      {/* Random selection button */}
-      <motion.div 
-        className="mt-3"
+      {/* Action buttons */}
+      {/* <motion.div 
+        className="mt-3 d-flex justify-content-center gap-3"
         variants={itemVariants}
       >
+        
+        
         <motion.button
-          className="btn btn-secondary"
+          className="btn btn-success"
           variants={buttonVariants}
           whileHover="hover"
           whileTap="tap"
-          onClick={handleRandomSelect}
+          onClick={handleSubmitNewClick}
         >
-          <FontAwesomeIcon icon={faShuffle} className="me-2" />
-          Random Gem
+          <FontAwesomeIcon icon={faPlus} className="me-2" />
+          Submit New Gem
         </motion.button>
-      </motion.div>
+      </motion.div> */}
 
       {/* Details section - keyed by ID to force re-render */}
       <AnimatePresence mode="wait">
@@ -204,6 +261,12 @@ const Gems = () => {
               <div>
                 <span className="badge bg-info rounded-pill">{selectedItem.type || "Type loading..."}</span>
               </div>
+              
+              {selectedItem.userSubmitted && (
+                <div>
+                  <span className="badge bg-success rounded-pill">User Submitted</span>
+                </div>
+              )}
             </motion.div>
 
             <motion.div
@@ -216,7 +279,7 @@ const Gems = () => {
                 whileTap="tap"
                 onClick={handleDetailsClick}
               >
-                Explore Details
+                Explore 
               </motion.button>
 
               <motion.button
@@ -229,6 +292,16 @@ const Gems = () => {
                 <FontAwesomeIcon icon={faHeart} />
                 <span className="ms-2">{isFavorite ? 'Saved' : 'Save'}</span>
               </motion.button>
+                <motion.button
+                className="btn btn-secondary"
+                variants={buttonVariants}
+                whileHover="hover"
+                whileTap="tap"
+                onClick={handleRandomSelect}
+                >
+                <FontAwesomeIcon icon={faShuffle} className="me-2" />
+                Suprise me
+            </motion.button>
             </motion.div>
           </motion.div>
         )}

@@ -20,7 +20,7 @@ const Explore = () => {
         slidesToShow: 3,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 5000,
+        autoplaySpeed: 2000,
         pauseOnHover: true,
         arrows: true,
         centerMode: true,
@@ -85,7 +85,14 @@ const Explore = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="mb-3">BrumGem</h1>
+          <h1 className="mb-3">BrumGem <FontAwesomeIcon
+                      icon={faGem}
+                      className="me-2"
+                      style={{
+                        color: '#0000FF',
+                        animation: 'spin-horizontal 4s linear infinite'
+                      }}
+                    /></h1>
           
       
           <div className="d-flex justify-content-center mb-4">

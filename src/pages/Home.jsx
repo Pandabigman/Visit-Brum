@@ -55,7 +55,7 @@ const Home = () => {
             <p>We thought of you too!</p>
            
             <LoadScript
-                googleMapsApiKey="AIzaSyDFGv0PJx9bsXQ9UqWFu1bYR7mHGWhce60"
+                googleMapsApiKey="AIzaSyDFGv0PJx9bsXQ9UqWFu1bYR7mHGWhce60" {/* this aint real btw */}
                 libraries={['places']}
                 >
                 <div className="position-relative mb-3">
